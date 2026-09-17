@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* Sun-drenched coastal palette: deep navy grounding, Gulf teal water, sunburst / coral CTAs */
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy: #0b2545;
+  --color-deep: #061d33;
+  --color-teal: #00a8b5;
+  --color-teal-light: #5fd3dc;
+  --color-teal-50: #e6f7f8;
+  --color-sun: #ff9f1c;
+  --color-sun-light: #ffb24a;
+  --color-coral: #ff5a36;
+  --color-coral-light: #ff7a5c;
+
+  --color-bg: #f4f9fc;
+  --color-surface: #ffffff;
+  --color-text: #0f1f2e;
+  --color-muted: #4b6070;
+  --color-line: #d5e3ec;
+
+  --shadow-card: 0 2px 10px rgba(11, 37, 69, 0.08);
+  --shadow-lift: 0 18px 44px rgba(11, 37, 69, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  text-wrap: pretty;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+a { color: var(--color-teal); }
+a:hover { color: var(--color-navy); }
+
+input, textarea, select, button { font-family: inherit; }
+input::placeholder, textarea::placeholder { color: var(--color-muted); }
+
+:focus-visible {
+  outline: 2px solid var(--color-sun);
+  outline-offset: 2px;
+}
+
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Shared layout utilities ---------- */
+@utility container-x {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 72px);
+}
+
+@utility section-pad {
+  padding-block: clamp(48px, 6vw, 96px);
+}
+
+@utility eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+/* Section headline: Barlow Condensed, sized for a section title */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  font-size: clamp(34px, 4vw, 56px);
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+
+  &:active { transform: translateY(1px); }
+  &:disabled { opacity: 0.6; cursor: default; }
+}
+
+@utility btn-primary {
+  background: var(--color-sun);
+  color: var(--color-navy);
+  border: 2px solid var(--color-sun);
+
+  &:hover { background: var(--color-sun-light); border-color: var(--color-sun-light); color: var(--color-navy); }
+}
+
+@utility btn-coral {
+  background: var(--color-coral);
+  color: #fff;
+  border: 2px solid var(--color-coral);
+
+  &:hover { background: var(--color-coral-light); border-color: var(--color-coral-light); color: #fff; }
+}
+
+@utility btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-navy);
+  border: 2px solid var(--color-line);
+
+  &:hover { background: var(--color-teal-50); border-color: var(--color-teal); color: var(--color-navy); }
+}
+
+/* For use over photos and navy bands */
+@utility btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+
+  &:hover { background: rgba(255, 255, 255, 0.12); border-color: #fff; color: #fff; }
+}
+
+@utility btn-sm {
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+@utility tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@utility card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@utility input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 15px;
+
+  &:focus { border-color: var(--color-teal); outline: none; }
+}
+
+@utility label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+}
+
+/* Photo treatment: punchier contrast and colour so the Gulf reads turquoise */
+@utility photo {
+  filter: contrast(1.08) saturate(1.18);
+}

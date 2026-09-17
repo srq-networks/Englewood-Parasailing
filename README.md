@@ -1,87 +1,41 @@
-# Welcome to React Router!
+# Englewood sites
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Monorepo for two sister businesses that share a dock at 1450 Beach Road, Englewood, FL:
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+| Folder | Site | Status |
+| --- | --- | --- |
+| `parasailing/` | englewoodparasailing.com | Full rebuild of the previous WordPress site (all pages, FareHarbor booking, reviews, waiver, weather/Instagram widgets) |
+| `rentalboats/` | englewoodrentalboats.com | Home page from the design mock; more pages to come |
 
-## Features
+Both are React 19 + Vite 8 + Tailwind CSS 4 + React Router 7, plain JSX, no backend. They build to static files that deploy to any Apache/cPanel host (the `public/.htaccess` in each site handles the SPA rewrite and, for parasailing, the 301s from the old WordPress URLs).
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## Commands
 
-## Getting Started
+Bun workspaces — one install at the root covers both sites.
 
-### Installation
+| Task | Command |
+| --- | --- |
+| Install | `bun install` |
+| Dev server (parasailing) | `bun run dev:parasailing` |
+| Dev server (rentalboats) | `bun run dev:rentalboats` |
+| Lint everything | `bun run lint` |
+| Build both | `bun run build` → `parasailing/dist`, `rentalboats/dist` |
+| Build one | `cd parasailing && bun run build` |
 
-Install the dependencies:
+## Environment
 
-```bash
-npm install
-```
+Each site reads optional Vite env vars (put them in `parasailing/.env` or `rentalboats/.env`, gitignored):
 
-### Development
+| Var | Site | Purpose |
+| --- | --- | --- |
+| `VITE_LEAD_ENDPOINT` | both | URL the request form POSTs JSON to. Empty = demo mode (form shows success without sending). |
+| `VITE_RENTALS_URL` | parasailing | Where "Boat rentals" links go. Defaults to englewoodrentalboats.com. |
+| `VITE_PARASAIL_URL` | rentalboats | Where "Parasailing" links go. Defaults to englewoodparasailing.com. |
 
-Start the development server with HMR:
+## Deploy
 
-```bash
-npm run dev
-```
+Upload the contents of `<site>/dist/` to the web root of the host for that domain. `.htaccess` is copied into `dist/` by the build.
 
-Your application will be available at `http://localhost:5173`.
+## Images
 
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Shipped images live in `<site>/public/images/` as `.webp`. Raw originals (downloaded from the previous sites) live in `assets-raw/`, which is gitignored; `assets-raw/convert.py` regenerates the webp files and favicons with Pillow.

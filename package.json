@@ -1,36 +1,22 @@
 {
-  "name": "englewoodparasailing",
+  "name": "englewood-sites",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "parasailing",
+    "rentalboats"
+  ],
   "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
-  },
-  "dependencies": {
-    "@libsql/client": "^0.17.3",
-    "@react-router/node": "7.15.0",
-    "@react-router/serve": "7.15.0",
-    "drizzle-orm": "^0.45.2",
-    "isbot": "^5.1.36",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "react-router": "7.15.0",
-    "resend": "^6.12.3"
+    "dev:parasailing": "bun run --cwd parasailing dev",
+    "dev:rentalboats": "bun run --cwd rentalboats dev",
+    "build": "bun run --cwd parasailing build && bun run --cwd rentalboats build",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@react-router/dev": "7.15.0",
-    "@tailwindcss/vite": "^4.2.4",
-    "@types/better-sqlite3": "^7.6.13",
-    "@types/node": "^22",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "drizzle-kit": "^0.31.10",
-    "tailwindcss": "^4.2.4",
-    "typescript": "^5.9.3",
-    "vite": "^8.0.3"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0"
   }
 }
