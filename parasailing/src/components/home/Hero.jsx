@@ -7,7 +7,8 @@ import Lightbox from "../Lightbox";
 
 const FROM_PRICE = Math.min(...FLIGHTS.map((f) => f.price));
 
-// Full-bleed photo with a navy wash at the bottom so the copy stays legible.
+// Full-bleed looping video over its still frame (shown until the video loads, or under reduced motion),
+// with a navy wash at the bottom so the copy stays legible.
 export function Backdrop() {
 	return (
 		<>
@@ -18,6 +19,16 @@ export function Backdrop() {
 				height="900"
 				fetchPriority="high"
 				className="photo absolute inset-0 -z-20 size-full object-cover object-[62%_45%]"
+			/>
+			<video
+				src="/video/hero.mp4"
+				autoPlay
+				muted
+				loop
+				playsInline
+				preload="metadata"
+				aria-hidden="true"
+				className="photo absolute inset-0 -z-20 size-full object-cover object-[62%_45%] motion-reduce:hidden"
 			/>
 			<div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/90 via-navy/35 to-navy/5" />
 			<div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-navy/50 via-transparent to-transparent" />
@@ -30,7 +41,7 @@ export function Copy() {
 		<div className="flex max-w-[880px] flex-col gap-6 text-white">
 			<span className="eyebrow text-yellow drop-shadow-[0_2px_8px_rgba(7,26,48,0.7)]">Englewood's #1 rated water adventure · Ages 5 to 105</span>
 			<h1 className="m-0 text-[clamp(56px,8.4vw,116px)] drop-shadow-[0_6px_28px_rgba(7,26,48,0.5)]">
-				Soar <span className="text-yellow">1,200 feet</span> above the Gulf of Mexico.
+				Soar <span className="text-yellow">1,200 feet</span> above sunny gulf beaches
 			</h1>
 			<p className="m-0 max-w-[58ch] text-lg text-white/90 md:text-xl">
 				Experience Englewood's ultimate view. Fly single, tandem or triple with the area's original and only full-time parasail team. Spot wild dolphins and sea turtles, feel the warm ocean breeze, and make the highlight memory of your vacation.{" "}

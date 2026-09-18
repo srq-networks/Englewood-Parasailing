@@ -14,7 +14,7 @@ export default function Home() {
 	usePageMeta({
 		title: "Englewood Parasailing — Soar 1,200 ft Above the Gulf | Englewood, FL",
 		description:
-			"Parasail 1,200 ft over the Gulf of Mexico in Englewood, Florida with the area's original, only full-time parasail team. Single, tandem and triple flights, ages 5 to 105, dry deck takeoff and landing. Call 833-359-1200.",
+			"Parasail adventures for the whole family in Englewood, Florida with the area's original and only full-time parasail team. Single, tandem and triple flights, ages 5 to 105, dry deck takeoff and landing. Call 833-359-1200.",
 	});
 	// The pricing cards can pre-select the flight in the request form.
 	const [flight, setFlight] = useState("bigair");

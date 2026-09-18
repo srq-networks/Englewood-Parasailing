@@ -13,6 +13,16 @@ export function Backdrop() {
 				fetchPriority="high"
 				className="photo absolute inset-0 -z-20 size-full object-cover"
 			/>
+			<video
+				src="/video/hero.mp4"
+				autoPlay
+				muted
+				loop
+				playsInline
+				preload="metadata"
+				aria-hidden="true"
+				className="photo absolute inset-0 -z-20 size-full object-cover motion-reduce:hidden"
+			/>
 			<div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-deep/95 via-navy/45 to-navy/15" />
 		</>
 	);

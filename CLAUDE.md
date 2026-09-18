@@ -50,7 +50,7 @@ The developer usually already has the dev server running and is viewing the page
 
 **Tailwind class style.** Prefer a native utility over an arbitrary value when one exists. Negative arbitrary values go inside the brackets (`top-[-120px]`). Inline `style={{}}` only for values computed from data.
 
-**Images.** Everything shipped lives in `<site>/public/images/<group>/` as `.webp` (photos ≤ 1600px wide, logos ≤ 600px, icons ≤ 160px). Raw originals go in `assets-raw/` (gitignored); `assets-raw/convert.py` converts with Pillow. Do not commit PNG/JPG. The hero video is `parasailing/public/video/englewood.mp4` (720p transcode of the original).
+**Images.** Everything shipped lives in `<site>/public/images/<group>/` as `.webp` (photos ≤ 1600px wide, logos ≤ 600px, icons ≤ 160px). Raw originals go in `assets-raw/` (gitignored); `assets-raw/convert.py` converts with Pillow. Do not commit PNG/JPG. Both home heroes loop `<site>/public/video/hero.mp4` (muted 720p transcodes of the old sites' Elementor background videos; the parasailing source is `assets-raw/ep/video/englewood.mp4`, the rentalboats source `assets-raw/rb/video/englewood-2.mp4`, ffmpeg command in `assets-raw/convert.py`). The parasailing "Watch the flight" lightbox plays `parasailing/public/video/englewood.mp4` (720p with audio).
 
 **Formatting.** Tabs in JSX, two spaces in CSS/JSON. Keep diffs limited to the lines you intend to change.
 
