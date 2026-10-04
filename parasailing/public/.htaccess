@@ -1,7 +1,7 @@
 # Single-page app on Apache: serve index.html for any path that isn't a real file so
 # React Router can handle /pricing etc. on a fresh load. The 301s below map the old
 # WordPress URLs onto the new routes so nothing linked from Google, FareHarbor or the
-# business profile goes dead.
+# business profile goes dead. /contact/ keeps its path (it is a real route now).
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -14,7 +14,6 @@
   RewriteRule ^englewood-parasailing-reviews/?$ /reviews [R=301,L]
   RewriteRule ^parasailing-pics-englewood-fl/?$ /pics [R=301,L]
   RewriteRule ^englewood-fl-parasailing-social-media/?$ /social [R=301,L]
-  RewriteRule ^contact/?$ /#contact [R=301,NE,L]
 
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f

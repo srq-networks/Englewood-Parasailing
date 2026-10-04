@@ -1,71 +1,87 @@
 import { useCallback, useState } from "react";
 import usePageMeta from "../hooks/usePageMeta";
 import { GALLERY } from "../data/gallery";
+import PageHero from "../components/PageHero";
 import Lightbox from "../components/Lightbox";
-import BookButton from "../components/BookButton";
 
-export function Header() {
-	return (
-		<div className="flex flex-col gap-5">
-			<span className="eyebrow">Awesome</span>
-			<h1 className="m-0 text-[clamp(40px,5.4vw,74px)] leading-none">Parasail pics</h1>
-			<p className="m-0 max-w-[52ch] text-lg text-ink-2">
-				Views from 1,200 feet over Englewood, Manasota Key and the Gulf. Pic and video packages are available to purchase for your flight.
-			</p>
-		</div>
-	);
-}
-
+// Four 250×167 thumbnails per row with no gaps, opening a prev/next lightbox.
 export function Grid() {
 	const [index, setIndex] = useState(-1);
 	const open = index >= 0;
-	const prev = useCallback(() => setIndex((i) => (i - 1 + GALLERY.length) % GALLERY.length), []);
+	const prev = useCallback(
+		() => setIndex((i) => (i - 1 + GALLERY.length) % GALLERY.length),
+		[],
+	);
 	const next = useCallback(() => setIndex((i) => (i + 1) % GALLERY.length), []);
 	const close = useCallback(() => setIndex(-1), []);
 	const current = GALLERY[index];
 
 	return (
 		<>
-			<ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,240px),1fr))] gap-4 p-0">
+			<ul className="m-0 grid max-w-[1000px] list-none grid-cols-2 p-0 md:grid-cols-4">
 				{GALLERY.map((g, i) => (
 					<li key={g.src}>
 						<button
 							type="button"
 							onClick={() => setIndex(i)}
-							className="block aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl bg-canvas-2"
+							className="block w-full cursor-pointer"
 							aria-label={`Open photo: ${g.alt}`}
 						>
-							<img src={g.src} alt={g.alt} loading="lazy" className="photo size-full object-cover transition-transform duration-300 hover:scale-105" />
+							<img
+								src={g.thumb}
+								alt={g.alt}
+								width="250"
+								height="167"
+								loading="lazy"
+								className="block aspect-[250/167] w-full object-cover"
+							/>
 						</button>
 					</li>
 				))}
 			</ul>
-			<Lightbox open={open} onClose={close} onPrev={prev} onNext={next} label="Photo viewer">
-				{current && <img src={current.src} alt={current.alt} className="max-h-full max-w-full rounded-2xl object-contain" />}
+			<Lightbox
+				open={open}
+				onClose={close}
+				onPrev={prev}
+				onNext={next}
+				label="Photo viewer"
+			>
+				{current && (
+					<img
+						src={current.src}
+						alt={current.alt}
+						className="max-h-full max-w-full object-contain"
+					/>
+				)}
 			</Lightbox>
 		</>
 	);
 }
 
-export function Cta() {
-	return (
-		<div className="flex flex-col items-start gap-5 rounded-3xl bg-gradient-to-br from-sky to-sky-deep px-[clamp(24px,4vw,56px)] py-12 text-white">
-			<h2 className="m-0 text-[clamp(30px,3.4vw,46px)]">Ready to fly in the clouds?</h2>
-			<BookButton>Book a flight</BookButton>
-		</div>
-	);
-}
-
 export default function Pics() {
 	usePageMeta({
-		title: "Pics — Englewood Parasailing",
-		description: "Photos from parasailing flights over Englewood Beach and Manasota Key, Florida. Photo and video packages available for your flight.",
+		title: "Pics – Englewood Parasailing",
+		description:
+			"Photos from parasailing flights over Englewood Beach and Manasota Key, Florida. Pic and video packages are available to purchase for your flight.",
 	});
 	return (
-		<div className="flex flex-col gap-16 pt-12 pb-24">
-			<section className="container-x"><Header /></section>
-			<section className="container-x"><Grid /></section>
-			<section className="container-x"><Cta /></section>
-		</div>
+		<>
+			<PageHero
+				kicker="Awesome"
+				title="Parasail Pics"
+				bg="/images/bg/back.webp"
+				heading="Ready to Fly In The Clouds?"
+			>
+				<p className="m-0 px-[10px] pt-5 pb-[30px] font-el text-[20px] leading-[30px] text-muted md:text-[22px]">
+					Pic and video packages are available to purchase for your flight.
+					Memories to last a lifetime are created on our boats!
+				</p>
+			</PageHero>
+			<section className="bg-light-2 py-[10px]">
+				<div className="container-x px-[25px]">
+					<Grid />
+				</div>
+			</section>
+		</>
 	);
 }

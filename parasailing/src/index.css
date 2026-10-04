@@ -1,227 +1,197 @@
 @import "tailwindcss";
 
+/* Tokens ported from the original SKT "Extreme Sports" / Elementor site. */
 @theme {
-  --font-sans: "Rubik", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Barlow Condensed", "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+	--font-display: "Teko", "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+	--font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+	--font-el: "Roboto", ui-sans-serif, system-ui, sans-serif;
+	--font-script: "Kaushan Script", cursive;
 
-  /* Deep marine navy: headings, body copy, footer and dark bands */
-  --color-navy: #0c2340;
-  --color-deep: #071a30;
-  /* Sky and water */
-  --color-sky: #0284c7;
-  --color-sky-deep: #026aa2;
-  --color-teal: #00a8b5;
-  --color-teal-light: #5fdde6;
-  /* Sun and coral: booking CTAs */
-  --color-yellow: #ffc72c;
-  --color-yellow-light: #ffd45c;
-  --color-coral: #ff5733;
-  --color-coral-light: #ff7352;
-  /* Light nautical canvas */
-  --color-canvas: #f0f7fc;
-  --color-canvas-2: #e2f0fb;
-  --color-surface: #ffffff;
-  --color-line: #cfe1ee;
-  /* Text */
-  --color-ink: #0c2340;
-  --color-ink-2: #3b5266;
-  --color-ink-3: #6b8296;
+	--color-navy: #001960;
+	--color-royal: #0746d3;
+	--color-royal-2: #0c4ee0;
+	--color-band: #003bff;
+	--color-card: #0089dd;
+	--color-red: #ff0000;
+	--color-red-link: #ff0008;
+	--color-book: #ef261c;
+	--color-price-btn: #c80000;
+	--color-check: #00c853;
+	--color-yellow: #ffe900;
+	--color-orange: #ff5301;
+	--color-panel: #0f6dbf;
+	--color-light: #f8f8f8;
+	--color-light-2: #f8f9f9;
+	--color-tint: #455bf5;
+	--color-rule: #51514e;
+	--color-ink: #1e1e1e;
+	--color-ink-2: #1a1a1a;
+	--color-body: #2b2b2b;
+	--color-muted: #7a7a7a;
+	--color-dropdown: #282828;
+
+	--animate-bounce-in: bounce-in 1s both;
+
+	@keyframes bounce-in {
+		0% {
+			opacity: 0;
+			transform: scale3d(0.3, 0.3, 0.3);
+		}
+		20% {
+			transform: scale3d(1.1, 1.1, 1.1);
+		}
+		40% {
+			transform: scale3d(0.9, 0.9, 0.9);
+		}
+		60% {
+			opacity: 1;
+			transform: scale3d(1.03, 1.03, 1.03);
+		}
+		80% {
+			transform: scale3d(0.97, 0.97, 0.97);
+		}
+		100% {
+			opacity: 1;
+			transform: scale3d(1, 1, 1);
+		}
+	}
 }
 
-/* Element defaults live in the base layer so utilities (btn-light, text-*) win. */
+/* Element defaults live in the base layer so utilities win. */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+	html {
+		scroll-behavior: smooth;
+	}
 
-  body {
-    background: var(--color-surface);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    text-wrap: pretty;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: clip;
-  }
+	body {
+		background: #fff;
+		color: var(--color-body);
+		font-family: var(--font-sans);
+		font-size: 17px;
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+		overflow-x: clip;
+	}
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 0.95;
-    letter-spacing: -0.005em;
-    text-wrap: balance;
-  }
+	input,
+	textarea,
+	select,
+	button {
+		font-family: inherit;
+	}
 
-  a { color: var(--color-sky-deep); }
-  a:hover { color: var(--color-sky); }
+	:focus-visible {
+		outline: 2px solid var(--color-orange);
+		outline-offset: 2px;
+	}
 
-  input, textarea, select, button { font-family: inherit; }
-  input::placeholder, textarea::placeholder { color: var(--color-ink-3); }
+	/* The mobile menu (Header.jsx) slides in from the right and pushes the page. */
+	#top {
+		transition: translate 0.3s ease;
+	}
+	body[data-menu-open] #top {
+		translate: -260px 0;
+	}
 
-  :focus-visible {
-    outline: 3px solid var(--color-coral);
-    outline-offset: 2px;
-  }
-
-  section[id] {
-    scroll-margin-top: 96px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
-
-  /* SmartWaiver's floating button (index.html) sits bottom-left; lift it above the
-     mobile call/book bar (StickyBar.jsx). */
-  @media (width < 48rem) {
-    #smartwaiver_floater { bottom: 72px !important; }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+		#top {
+			transition: none;
+		}
+	}
 }
 
-/* ---------- Shared layout utilities ---------- */
+/* ---------- Shared utilities ---------- */
 @utility container-x {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: clamp(20px, 5vw, 72px);
+	width: 100%;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: 15px;
 }
 
-@utility section-pad {
-  padding-block: clamp(56px, 7vw, 104px);
+/* Small Teko line above a big blue heading ("About", "Ready...?") */
+@utility kicker {
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 37px;
+	line-height: 1;
+	color: #000;
 }
 
-@utility eyebrow {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-sky);
+/* Big blue Teko section heading ("Gallery", "Time To Fly!") */
+@utility display-blue {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 45px;
+	line-height: 1;
+	color: var(--color-royal);
+
+	@media (width >= 48rem) {
+		font-size: 80px;
+	}
 }
 
-/* Section headline: Barlow Condensed, tall and tight */
-@utility display {
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 0.95;
-  font-size: clamp(38px, 4.6vw, 64px);
-}
-
-/* Bold, upright action buttons. Labels are wrapped in a <span> so icons and text
-   can be laid out together. */
+/* Teko buttons. Content is wrapped in a <span> so an icon can sit next to the label. */
 @utility btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 26px;
-  border-radius: 10px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 19px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  line-height: 1.1;
-  cursor: pointer;
-  box-shadow: 0 6px 18px -8px rgb(12 35 64 / 0.4);
-  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+	display: inline-block;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 26px;
+	line-height: 1;
+	letter-spacing: 1px;
+	color: #fff;
+	border-radius: 10px;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 
-  & > span { display: inline-flex; align-items: center; gap: 10px; }
-  &:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgb(12 35 64 / 0.45); }
-  &:disabled { opacity: 0.6; cursor: default; transform: none; }
+	& > span {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	&:hover {
+		background-color: #000;
+		color: #fff;
+	}
 }
 
-@utility btn-primary {
-  background: var(--color-yellow);
-  color: var(--color-navy);
-  border: 2px solid var(--color-yellow);
-
-  &:hover { background: var(--color-yellow-light); border-color: var(--color-yellow-light); color: var(--color-navy); }
+@utility btn-royal {
+	background-color: var(--color-royal);
+	padding: 24px 60px 20px;
 }
 
-@utility btn-coral {
-  background: var(--color-coral);
-  color: #fff;
-  border: 2px solid var(--color-coral);
-
-  &:hover { background: var(--color-coral-light); border-color: var(--color-coral-light); color: #fff; }
+@utility btn-red {
+	background-color: var(--color-red);
+	padding: 24px 50px 20px;
+	box-shadow: 0 0 20px 10px rgb(0 0 0 / 0.05);
 }
 
-/* Outline button for light backgrounds */
-@utility btn-secondary {
-  background: transparent;
-  color: var(--color-navy);
-  border: 2px solid var(--color-navy);
-  box-shadow: none;
-
-  &:hover { background: var(--color-navy); color: #fff; }
+/* Elementor "xl" button preset ("Click here", "Pricing") */
+@utility btn-xl {
+	font-family: var(--font-el);
+	font-weight: 500;
+	font-size: 20px;
+	letter-spacing: 0;
+	padding: 25px 50px;
+	border-radius: 6px;
 }
 
-/* Outline button for photos and dark bands */
-@utility btn-light {
-  background: rgb(12 35 64 / 0.35);
-  color: #fff;
-  border: 2px solid rgb(255 255 255 / 0.85);
-  backdrop-filter: blur(6px);
-  box-shadow: none;
-
-  &:hover { background: #fff; border-color: #fff; color: var(--color-navy); }
-}
-
-@utility btn-sm {
-  padding: 10px 18px;
-  font-size: 16px;
-}
-
-@utility card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px -18px rgb(12 35 64 / 0.25);
-}
-
+/* Contact form fields */
 @utility input {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 2px solid var(--color-line);
-  background: var(--color-surface);
-  color: var(--color-ink);
-  font-size: 15px;
+	width: 100%;
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	background: #f3f3f3;
+	color: var(--color-ink);
+	font-size: 17px;
 
-  &:focus { border-color: var(--color-sky); outline: none; }
-}
-
-@utility label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-3);
-}
-
-/* Photo treatment: punchier contrast and colour, sunny-Florida saturation */
-@utility photo {
-  filter: contrast(1.12) saturate(1.28);
-}
-
-/* Small pill for facts and badges */
-@utility chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--color-canvas-2);
-  color: var(--color-navy);
+	&:focus {
+		border-color: var(--color-royal);
+		outline: none;
+	}
 }

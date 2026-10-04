@@ -1,35 +1,28 @@
-import { useState } from "react";
 import usePageMeta from "../hooks/usePageMeta";
 import Hero from "../components/home/Hero";
-import TrustBar from "../components/home/TrustBar";
-import Thrills from "../components/home/Thrills";
-import PricingSection from "../components/home/PricingSection";
-import Availability from "../components/home/Availability";
+import Welcome from "../components/home/Welcome";
 import GalleryTeaser from "../components/home/GalleryTeaser";
 import ReviewsBand from "../components/home/ReviewsBand";
-import BigCta from "../components/home/BigCta";
-import Contact from "../components/home/Contact";
+import About from "../components/home/About";
+import AdventureCta from "../components/home/AdventureCta";
+import TimeToFly from "../components/home/TimeToFly";
 
 export default function Home() {
 	usePageMeta({
-		title: "Englewood Parasailing — Soar 1,200 ft Above the Gulf | Englewood, FL",
+		title: "Englewood Parasailing – Englewood's #1 Parasailing Company",
 		description:
-			"Parasail adventures for the whole family in Englewood, Florida with the area's original and only full-time parasail team. Single, tandem and triple flights, ages 5 to 105, dry deck takeoff and landing. Call 833-359-1200.",
+			"Parasail in Englewood, Florida with the area's original, most experienced and only full-time operator. Flights from $89, ages 5 to 105. Call 833-359-1200.",
 	});
-	// The pricing cards can pre-select the flight in the request form.
-	const [flight, setFlight] = useState("bigair");
 
 	return (
 		<>
 			<Hero />
-			<TrustBar />
-			<Thrills />
-			<PricingSection onPick={setFlight} />
-			<Availability />
+			<Welcome />
 			<GalleryTeaser />
 			<ReviewsBand />
-			<BigCta />
-			<Contact flight={flight} onFlightChange={setFlight} />
+			<About />
+			<AdventureCta />
+			<TimeToFly />
 		</>
 	);
 }

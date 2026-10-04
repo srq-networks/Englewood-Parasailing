@@ -1,24 +1,63 @@
-// Answers follow the "no license needed" positioning from the design brief. The driver age,
-// briefing and GPS claims are not on the live site — verify with the owner before launch.
+// /faqs accordion. Answer parts are strings or { text, href } links, rendered in order.
 export const FAQ = [
 	{
-		q: "Do I need a boating license?",
-		a: "No. Anyone 25 or older with a valid driver's license can captain. We walk you through the boat and the channels at the dock before you leave.",
+		q: "What are the renting requirements?",
+		a: [
+			"To rent a boat you must be at least 27 years old. If born after January 1, 1988 you must have taken a safety boaters course. Boat US offers a free course ",
+			{ text: "HERE", href: "https://courses.boatus.org/course/id/BTUS100S" },
+			" and donations are always nice to help them out.",
+		],
 	},
 	{
-		q: "What's included?",
-		a: "All USCG safety gear (life jackets, fire extinguisher, horn), a full tank, GPS with the safe channels and sandbars marked, and a bimini for shade on the pontoons.",
+		q: "Does a Captain accompany us?",
+		a: [
+			"A Captain does not come with the rental and you must meet the rental requirements. A Captain may be hired at an additional hourly rate. Please contact us for more information.",
+		],
 	},
 	{
-		q: "How do the rates work?",
-		a: "Pick 4, 6 or 8 hours. Rates start at $199 for the skiff and exclude tax. A 15% automatic gratuity covers dockside cleaning and fueling.",
+		q: "What if the weather is bad?",
+		a: [
+			"There are no fees for cancellations due to bad weather. If the boat is available, another day, we would be more than happy to accommodate and reschedule.",
+		],
 	},
 	{
-		q: "What if the weather turns?",
-		a: "We make the call, not you. If we cancel for weather, you don't pay — we'll rebook or refund.",
+		q: "Do you have a cancellation policy?",
+		a: [
+			"Yes, 24 hours or the full amount of rental will be charged unless due to weather.",
+		],
 	},
 	{
-		q: "Can we bring the dog? Coolers?",
-		a: "Yes and yes. Pontoons are the crowd favorite for both.",
+		q: "What if the boat breaks down?",
+		a: [
+			"Your dockmaster is your lifeline. Call us and we will send someone out immediately.",
+		],
+	},
+	{
+		q: "Is fuel included?",
+		a: ["No, fuel cost is not included in your rental."],
+	},
+	{
+		q: "Does a GPS come on the boats?",
+		a: ["Yes, GPS with a sonar/fishfinder."],
+	},
+	{
+		q: "What safety equipment is included?",
+		a: [
+			"All required safety gear is included on all boats including: horn, fire extinguisher, PFDs.",
+		],
+	},
+	{
+		q: "What if we want to extend our time?",
+		a: ["Just give us a call and we will accommodate if we can."],
+	},
+	{
+		q: "Are you open holidays? Hours?",
+		a: ["Yes, standard hours unless posted or weather related issues."],
+	},
+	{
+		q: "Do you run any discount specials?",
+		a: [
+			"Yes, we offer a multi-day discount. Please contact us to set this up.",
+		],
 	},
 ];

@@ -23,7 +23,7 @@ export default function Lightbox({ open, onClose, onPrev, onNext, label = "Media
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open, onPrev, onNext]);
 
-	const navBtn = "absolute top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-surface/80 text-ink hover:bg-surface";
+	const navBtn = "absolute top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/80 text-ink hover:bg-white";
 
 	return (
 		<dialog
@@ -31,12 +31,12 @@ export default function Lightbox({ open, onClose, onPrev, onNext, label = "Media
 			aria-label={label}
 			onClose={onClose}
 			onClick={(e) => e.target === ref.current && onClose()}
-			className="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-deep/90"
+			className="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-black/90"
 		>
 			{open && (
 				<div onClick={(e) => e.target === e.currentTarget && onClose()} className="relative flex h-dvh w-screen items-center justify-center p-4">
 					{children}
-					<button type="button" onClick={onClose} aria-label="Close" className="absolute top-4 right-4 grid size-12 place-items-center rounded-full bg-surface/80 text-ink hover:bg-surface">
+					<button type="button" onClick={onClose} aria-label="Close" className="absolute top-4 right-4 grid size-12 place-items-center rounded-full bg-white/80 text-ink hover:bg-white">
 						<X size={22} />
 					</button>
 					{onPrev && (

@@ -1,19 +1,21 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import TopBar from "./components/TopBar";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
-import StickyBar from "./components/StickyBar";
+import BookNowFloat from "./components/BookNowFloat";
+import ToTop from "./components/ToTop";
 import Home from "./pages/Home";
 import Parasailing from "./pages/Parasailing";
 import Pricing from "./pages/Pricing";
 import Reviews from "./pages/Reviews";
 import Pics from "./pages/Pics";
 import Social from "./pages/Social";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 // On route change: jump to the top of a new page, or to the #hash target when one is
-// given (nav links use "/#contact" so they work from any page).
+// given (the nav "Contact" link is "/#contact" so it works from any page).
 function ScrollManager() {
 	const { pathname, hash } = useLocation();
 	useEffect(() => {
@@ -33,9 +35,9 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<ScrollManager />
-			<div id="top" className="relative min-h-screen pb-20 md:pb-0">
+			<div id="top" className="min-h-screen">
 				<TopBar />
-				<Navbar />
+				<Header />
 				<main>
 					<Routes>
 						<Route path="/" element={<Home />} />
@@ -44,12 +46,14 @@ export default function App() {
 						<Route path="/reviews" element={<Reviews />} />
 						<Route path="/pics" element={<Pics />} />
 						<Route path="/social" element={<Social />} />
+						<Route path="/contact" element={<Contact />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</main>
 				<Footer />
-				<StickyBar />
 			</div>
+			<BookNowFloat />
+			<ToTop />
 		</BrowserRouter>
 	);
 }

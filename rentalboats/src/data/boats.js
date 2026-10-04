@@ -1,84 +1,125 @@
-// Fleet, rates and categories as listed on englewoodrentalboats.com (boat-rental-englewood-fl).
-// Rates are per rental, before tax. Photos: the skiff and the Bayliner reuse pontoon shots
-// until real ones land in assets-raw/rb.
+import { FAREHARBOR, bookingCentral } from "./site";
+
+// The five cards on /boats, in live order. Copy is verbatim from the live site.
 export const BOATS = [
 	{
-		id: "suncatcher-22",
-		name: "22' Sun Catcher Pontoon",
-		year: 2021,
-		category: "pontoon",
-		engine: "90hp Yamaha 4-Stroke",
-		capacity: 11,
-		bestFor: "Large Families, Sandbars & Shelling",
-		blurb: "Spacious lounge seating, heavy-duty bimini shade, and swimming ladder. Nose right up to the sandbar.",
-		rates: { fourHour: 285, sixHour: 375, eightHour: 435 },
-		img: "/images/fleet/suncatcher.webp",
+		id: "sun-catcher",
+		title: "2021 Sun Catcher pontoons with 90hp",
+		image: "/images/boats/sun-catcher.webp",
+		bullets: ["90hp Yamaha Four Strokes", "Capacity of 11 PPL"],
+		rates: [
+			"$285+ tax for 4 hrs",
+			"$375 + tax for 6 hrs",
+			"$435 + tax for 8 hours.",
+		],
+		href: bookingCentral("4c61a39d-fdb5-45d8-8491-40fa3ef69093"),
+		bookLabel: "Click here to Book Now!",
 	},
 	{
-		id: "aloha-20",
-		name: "20' Aloha Pontoon",
-		year: 2020,
-		category: "pontoon",
-		engine: "90hp Yamaha 4-Stroke",
-		capacity: 9,
-		bestFor: "Sandbar Hopping & Casual Cruising",
-		blurb: "Comfortable couches, easy boarding, and plenty of cooler space for a day at Stump Pass.",
-		rates: { fourHour: 285, sixHour: 375, eightHour: 435 },
-		img: "/images/fleet/aloha.webp",
+		id: "aloha",
+		title: "2020 Aloha pontoon with 90hp",
+		image: "/images/boats/aloha.webp",
+		bullets: ["90hp Yamaha Four Strokes", "Capacity of 9 PPL"],
+		rates: [
+			"$285+ tax for 4 hrs",
+			"$375 + tax for 6 hrs",
+			"$435 + tax for 8 hours.",
+		],
+		href: bookingCentral("1e587787-f6a9-4337-876d-d705469c64e7"),
+		bookLabel: "Click Here to Book Now!",
 	},
 	{
-		id: "bayliner-deck",
-		name: "20' Bayliner Deck Boat",
-		year: 2020,
-		category: "deck",
-		engine: "250hp Yamaha 4-Stroke",
-		capacity: 8,
-		bestFor: "Speed, Watersports & Open Water",
-		blurb: "Combines the spacious deck of a pontoon with the speed and hull performance of a runabout.",
-		rates: { fourHour: 285, sixHour: 375, eightHour: 435 },
-		img: "/images/fleet/family.webp",
+		id: "scout",
+		title: "2019 Scout Center Console with 150hp",
+		image: "/images/boats/scout.webp",
+		bullets: [
+			"150hp Yamaha Four Stroke",
+			"Capacity of 6 PPL (4 is most comfortable if all adults)",
+		],
+		rates: [
+			"$299 + tax for 4 hrs",
+			"$399 + tax for 6 hrs",
+			"$450 + tax for 8 hours.",
+		],
+		href: bookingCentral("1dd90449-c45b-47c1-9c25-395371944cf0"),
+		bookLabel: "Click Here To Book Now",
 	},
 	{
-		id: "scout-19",
-		name: "19' Scout Center Console",
-		year: 2019,
-		category: "console",
-		engine: "150hp Yamaha 4-Stroke",
-		capacity: 6,
-		capacityNote: "4 adults recommended",
-		bestFor: "Inshore Fishing & Gulf Exploration",
-		blurb: "Built for speed, rod holders, livewell, and handling open water chop. Ideal for serious anglers.",
-		rates: { fourHour: 299, sixHour: 399, eightHour: 450 },
-		img: "/images/fleet/scout.webp",
+		id: "bayliner",
+		title: "2020 Bayliner deck boat with 175hp",
+		image: "/images/boats/bayliner.webp",
+		bullets: ["250hp Yamaha Four Stroke", "Capacity of 8 PPL"],
+		rates: [
+			"$285 + tax for 4 hrs",
+			"$375 + tax for 6 hrs",
+			"$435 + tax for 8 hours.",
+		],
+		href: FAREHARBOR.book,
+		bookLabel: "Click Here to Book Now!",
 	},
 	{
-		id: "keywest-skiff",
-		name: "17' Key West Skiff",
-		year: 2014,
-		category: "skiff",
-		engine: "50hp Yamaha 4-Stroke",
-		capacity: 6,
-		capacityNote: "4 adults recommended",
-		bestFor: "Backcountry Fishing & Shallow Bays",
-		blurb: "Nimble, shallow-draft skiff to explore backcountry mangroves and secluded fishing honey-holes.",
-		rates: { fourHour: 199, sixHour: 250, eightHour: 299 },
-		img: "/images/fleet/aloha.webp",
+		id: "skiff",
+		title: "2014 Key West Skiff with 50hp",
+		image: "/images/boats/skiff.webp",
+		bullets: [
+			"50hp Yamaha Four Stroke",
+			"Capacity of 6 PPL (4 is most comfortable if all adults)",
+		],
+		rates: [
+			"$199 + tax for 4 hrs",
+			"$250 + tax for 6 hrs",
+			"$299 + tax for 8 hours.",
+		],
+		href: FAREHARBOR.book,
+		bookLabel: "Click Here to Book Now!",
 	},
 ];
 
-export const CATEGORY_LABELS = { pontoon: "Pontoon", deck: "Deck boat", console: "Center console", skiff: "Skiff" };
+export const GRATUITY_NOTE =
+	"NOTE: There is a 15% automatic gratuity charged for boat cleaning and fueling";
 
-// Fleet filter tabs. Grouping follows the old site: pontoons + skiffs vs. consoles + deck boats.
-export const CATEGORIES = [
-	{ id: "all", label: "All Boats", types: ["pontoon", "skiff", "deck", "console"] },
-	{ id: "leisure", label: "Pontoons & Leisure", types: ["pontoon", "skiff"] },
-	{ id: "fishing", label: "Center Consoles & Fishing", types: ["console", "deck"] },
-];
+function gallery(slug, stems) {
+	return stems.map((stem) => ({
+		src: `/images/galleries/${slug}/${stem}.webp`,
+		thumb: `/images/galleries/${slug}/thumbs/${stem}.webp`,
+		caption: stem.toUpperCase(),
+	}));
+}
 
-export const DURATIONS = [
-	{ id: "fourHour", label: "4 hours", short: "4 hrs" },
-	{ id: "sixHour", label: "6 hours", short: "6 hrs" },
-	{ id: "eightHour", label: "Full day (8h)", short: "Full day" },
-];
-
-export const PRICING_NOTE = "Rates exclude tax. 15% automatic gratuity applies for dockside boat cleaning and fueling.";
+// Gallery pages keyed by route slug, images in live order.
+export const GALLERIES = {
+	aloha: {
+		title: "Aloha Pontoon Rental Boats Englewood, FL",
+		pageTitle: "Aloha Pontoon Gallery",
+		images: gallery("aloha", [
+			"img_0413",
+			"img_0406",
+			"img_0404",
+			"img_0430",
+			"img_0412",
+			"img_0410",
+		]),
+	},
+	"sun-catcher": {
+		title: "Sun Catcher Pontoon Rental Boats Englewood, FL",
+		pageTitle: "Sun Catcher Pontoon Gallery",
+		images: gallery("sun-catcher", [
+			"img_0434",
+			"img_0438",
+			"img_0451",
+			"img_0455",
+		]),
+	},
+	scout: {
+		title: "Scout Center Console Rental Boat Englewood, FL",
+		pageTitle: "Scout Center Console Gallery",
+		images: gallery("scout", [
+			"img_0403",
+			"img_0370-1",
+			"img_0373",
+			"img_0397",
+			"img_0368",
+			"img_0367",
+		]),
+	},
+};

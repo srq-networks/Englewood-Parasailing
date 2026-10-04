@@ -1,32 +1,33 @@
 import usePageMeta from "../hooks/usePageMeta";
 import Hero from "../components/home/Hero";
-import TrustBar from "../components/home/TrustBar";
-import Fleet from "../components/home/Fleet";
-import UseItFor from "../components/home/UseItFor";
-import Included from "../components/home/Included";
-import Reviews from "../components/home/Reviews";
-import Book from "../components/home/Book";
+import BoatTypes from "../components/home/BoatTypes";
+import UseOurBoats from "../components/home/UseOurBoats";
+import BookParallax from "../components/home/BookParallax";
+import RentalsInclude from "../components/home/RentalsInclude";
+import Testimonials from "../components/home/Testimonials";
+import SomeoneElse from "../components/home/SomeoneElse";
 import ParasailPromo from "../components/home/ParasailPromo";
-import Faq from "../components/home/Faq";
+import GetInTouch from "../components/GetInTouch";
 
 export default function Home() {
 	usePageMeta({
-		title: "Englewood Rental Boats — Pontoon, Skiff & Center Console Rentals in Englewood, FL",
+		title: "Home - Englewood Rental Boats",
 		description:
-			"Rent a pontoon, skiff, deck boat or center console at 1450 Beach Road on Manasota Key. Five boats, 4/6/8-hour rates from $199, fueled up and ready at the dock. Call 941-475-0733.",
+			"Affordable pontoon, center console, deck boat and skiff rentals at 1450 Beach Rd, Englewood, FL. Open 7 days, 8AM to 6PM. Call 941-475-0733 or book online.",
 	});
-
 	return (
 		<>
 			<Hero />
-			<TrustBar />
-			<Fleet />
-			<UseItFor />
-			<Included />
-			<Reviews />
-			<Book />
+			<BoatTypes />
+			<UseOurBoats />
+			<BookParallax />
+			<RentalsInclude />
+			<Testimonials />
+			{/* Empty 60px-padded section on the live page, kept as spacing. */}
+			<div aria-hidden="true" className="py-[60px]" />
+			<SomeoneElse />
 			<ParasailPromo />
-			<Faq />
+			<GetInTouch />
 		</>
 	);
 }
